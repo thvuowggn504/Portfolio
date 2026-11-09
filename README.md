@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Bùi Thanh Vương — Quiet Luxury Backend Developer Portfolio
 
 Trang Portfolio cá nhân cao cấp được thiết kế theo phong cách **Quiet Luxury & Digital System Architecture** dành riêng cho **Bùi Thanh Vương — Backend Developer (PHP/Laravel & Java/Spring Boot)**.
@@ -23,3 +24,6 @@ Trang Portfolio cá nhân cao cấp được thiết kế theo phong cách **Qui
    ```bash
    npx serve .
    ```
+=======
+# Portfolio
+>>>>>>> 6916995f699a8805e29f68dbf1f7560556479d88
