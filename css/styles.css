@@ -1,0 +1,661 @@
+/* ==========================================================================
+   BÙI THANH VƯƠNG — BACKEND ARCHITECT PORTFOLIO
+   Design Direction: Quiet Luxury / Digital System Architecture
+   Palette: Obsidian Graphite (#09090B), Charcoal Smoke (#111216),
+            Champagne Gold (#C9A96E), Warm Ivory (#F4F1EA)
+   ========================================================================== */
+
+:root {
+  --bg-obsidian: #09090b;
+  --bg-charcoal: #0f1015;
+  --bg-elevated: #15171f;
+  --bg-glass: rgba(18, 20, 26, 0.72);
+
+  --gold-primary: #c9a96e;
+  --gold-light: #e6cfa3;
+  --gold-muted: #8a7042;
+  --gold-glow: rgba(201, 169, 110, 0.16);
+  --gold-border: rgba(201, 169, 110, 0.18);
+  --gold-border-subtle: rgba(201, 169, 110, 0.08);
+
+  --text-ivory: #f4f1ea;
+  --text-pewter: #a6a196;
+  --text-stone: #6e6a61;
+
+  --accent-emerald: #64a687;
+  --accent-laravel: #d4846a;
+  --accent-spring: #7ca3c7;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-obsidian);
+  color: var(--text-ivory);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  selection-background-color: var(--gold-primary);
+}
+
+::selection {
+  background: rgba(201, 169, 110, 0.28);
+  color: var(--text-ivory);
+}
+
+body {
+  background-color: var(--bg-obsidian);
+  color: var(--text-ivory);
+  overflow-x: hidden;
+  line-height: 1.65;
+  position: relative;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-obsidian);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(201, 169, 110, 0.25);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-primary);
+}
+
+/* Subtle Architectural Film Grain & Background Grid */
+.ambient-noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.architectural-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-size: 72px 72px;
+  background-image:
+    linear-gradient(to right, rgba(201, 169, 110, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(201, 169, 110, 0.03) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 35%, black 20%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 35%, black 20%, transparent 100%);
+}
+
+/* Celestial White Silk Fish & Gentle Water Overlay Canvas */
+#celestial-fish-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 25;
+  mix-blend-mode: screen;
+}
+
+.ambient-water-caustics {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 55% 40% at 75% 25%, rgba(244, 241, 234, 0.035) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 45% at 20% 75%, rgba(201, 169, 110, 0.03) 0%, transparent 70%);
+  animation: water-breathe 10s ease-in-out infinite alternate;
+}
+
+@keyframes water-breathe {
+  0% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+/* Ambient Champagne Spotlight following cursor */
+.ambient-spotlight {
+  position: fixed;
+  width: 750px;
+  height: 750px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(
+    circle,
+    rgba(201, 169, 110, 0.065) 0%,
+    rgba(201, 169, 110, 0.02) 38%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s ease;
+  will-change: left, top;
+}
+
+/* Custom Dual-Ring Luxury Cursor (Desktop) */
+@media (pointer: fine) {
+  .cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background-color: var(--gold-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: width 0.25s var(--ease-luxury), height 0.25s var(--ease-luxury), background-color 0.25s ease;
+    will-change: transform;
+  }
+
+  .cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(201, 169, 110, 0.42);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.35s var(--ease-luxury), height 0.35s var(--ease-luxury),
+                border-color 0.3s ease, background-color 0.3s ease;
+    will-change: transform;
+  }
+
+  .cursor-ring.is-hovering {
+    width: 58px;
+    height: 58px;
+    border-color: var(--gold-light);
+    background-color: rgba(201, 169, 110, 0.08);
+  }
+}
+
+@media (pointer: coarse) {
+  .cursor-dot,
+  .cursor-ring,
+  .ambient-spotlight {
+    display: none !important;
+  }
+}
+
+/* Typography Classes */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-sans-ui {
+  font-family: var(--font-sans);
+}
+
+.font-mono-tech {
+  font-family: var(--font-mono);
+}
+
+/* Metallic Champagne Text Gradient */
+.text-champagne-gradient {
+  background: linear-gradient(135deg, #f7f3eb 0%, #e5cfa0 45%, #c9a96e 78%, #9a7b45 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-champagne {
+  color: var(--gold-primary);
+}
+
+.text-ivory {
+  color: var(--text-ivory);
+}
+
+.text-pewter {
+  color: var(--text-pewter);
+}
+
+.text-stone {
+  color: var(--text-stone);
+}
+
+/* Luxury Structural Hairlines & Crosshairs */
+.hairline-border {
+  border: 1px solid var(--gold-border-subtle);
+  transition: border-color 0.4s var(--ease-luxury), box-shadow 0.4s var(--ease-luxury);
+}
+
+.hairline-border:hover {
+  border-color: var(--gold-border);
+}
+
+.corner-ornament {
+  position: relative;
+}
+
+.corner-ornament::before,
+.corner-ornament::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: var(--gold-primary);
+  opacity: 0.45;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s var(--ease-luxury);
+}
+
+.corner-ornament::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid var(--gold-primary);
+  border-left: 1px solid var(--gold-primary);
+}
+
+.corner-ornament::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1px solid var(--gold-primary);
+  border-right: 1px solid var(--gold-primary);
+}
+
+.corner-ornament:hover::before,
+.corner-ornament:hover::after {
+  opacity: 0.95;
+}
+
+/* ==========================================================================
+   3D INTERACTIVE TILT CARDS (60FPS HARDWARE ACCELERATED)
+   ========================================================================== */
+.tilt-card-wrapper {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.tilt-card {
+  position: relative;
+  background: linear-gradient(160deg, rgba(22, 24, 31, 0.86) 0%, rgba(13, 14, 18, 0.94) 100%);
+  border: 1px solid rgba(201, 169, 110, 0.13);
+  border-radius: 4px;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.12s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.45s var(--ease-luxury),
+              box-shadow 0.45s var(--ease-luxury);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  overflow: hidden;
+}
+
+.tilt-card.is-resetting {
+  transition: transform 0.65s var(--ease-luxury),
+              border-color 0.45s var(--ease-luxury),
+              box-shadow 0.45s var(--ease-luxury);
+}
+
+.tilt-card:hover {
+  border-color: rgba(201, 169, 110, 0.38);
+  box-shadow:
+    0 26px 60px -15px rgba(0, 0, 0, 0.78),
+    0 0 35px -8px rgba(201, 169, 110, 0.12);
+}
+
+/* Dynamic Specular Glare tracking cursor on 3D surface */
+.tilt-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  background: radial-gradient(
+    480px circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(230, 207, 163, 0.11),
+    rgba(201, 169, 110, 0.03) 40%,
+    transparent 70%
+  );
+  transition: opacity 0.35s ease;
+}
+
+.tilt-card:hover .tilt-glare {
+  opacity: 1;
+}
+
+/* Inner 3D Depth Layers */
+.depth-layer-1 {
+  transform: translateZ(14px);
+  transform-style: preserve-3d;
+}
+
+.depth-layer-2 {
+  transform: translateZ(26px);
+  transform-style: preserve-3d;
+}
+
+/* ==========================================================================
+   HERO 3D STAGE & HUD CONTROLS
+   ========================================================================== */
+.hero-3d-container {
+  position: relative;
+  width: 100%;
+  height: 540px;
+  border: 1px solid rgba(201, 169, 110, 0.16);
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(27, 29, 38, 0.65) 0%,
+    rgba(10, 11, 14, 0.92) 75%
+  );
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+#hero-webgl-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+}
+
+#hero-webgl-canvas:active {
+  cursor: grabbing;
+}
+
+.hud-mode-btn {
+  background: rgba(12, 13, 17, 0.78);
+  border: 1px solid rgba(201, 169, 110, 0.18);
+  color: var(--text-pewter);
+  padding: 6px 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: all 0.3s var(--ease-luxury);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.hud-mode-btn:hover,
+.hud-mode-btn.active {
+  border-color: var(--gold-primary);
+  color: var(--text-ivory);
+  background: rgba(201, 169, 110, 0.14);
+}
+
+/* ==========================================================================
+   BUTTONS & INTERACTIVE ELEMENTS
+   ========================================================================== */
+.btn-luxury-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #d4b475 0%, #b89352 100%);
+  color: #09090b;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid #e5cfa0;
+  border-radius: 2px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s var(--ease-luxury);
+  text-decoration: none;
+}
+
+.btn-luxury-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -6px rgba(201, 169, 110, 0.38);
+  background: linear-gradient(135deg, #e5cfa0 0%, #c9a96e 100%);
+}
+
+.btn-luxury-outline {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  background: rgba(201, 169, 110, 0.04);
+  color: var(--text-ivory);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid rgba(201, 169, 110, 0.32);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.4s var(--ease-luxury);
+  text-decoration: none;
+}
+
+.btn-luxury-outline:hover {
+  border-color: var(--gold-primary);
+  background: rgba(201, 169, 110, 0.11);
+  transform: translateY(-2px);
+}
+
+/* Tech Pill Badges */
+.tech-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text-ivory);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 169, 110, 0.16);
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+.tech-pill:hover {
+  border-color: var(--gold-primary);
+  background: rgba(201, 169, 110, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Status Pulse Indicator */
+.status-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-emerald);
+  box-shadow: 0 0 0 0 rgba(100, 166, 135, 0.7);
+  animation: pulse-emerald 2.4s infinite;
+}
+
+@keyframes pulse-emerald {
+  0% {
+    box-shadow: 0 0 0 0 rgba(100, 166, 135, 0.65);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(100, 166, 135, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(100, 166, 135, 0);
+  }
+}
+
+/* Section Divider Line */
+.luxury-divider {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 169, 110, 0.26) 25%,
+    rgba(201, 169, 110, 0.45) 50%,
+    rgba(201, 169, 110, 0.26) 75%,
+    transparent 100%
+  );
+}
+
+/* Interactive Blueprint Modal / Drawer */
+.blueprint-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(6, 7, 9, 0.84);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease-luxury);
+}
+
+.blueprint-modal-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.blueprint-modal-panel {
+  width: 100%;
+  max-width: 980px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: linear-gradient(165deg, #13151c 0%, #0b0c10 100%);
+  border: 1px solid rgba(201, 169, 110, 0.35);
+  border-radius: 4px;
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.85);
+  transform: translateY(24px) scale(0.98);
+  transition: transform 0.45s var(--ease-luxury);
+}
+
+.blueprint-modal-backdrop.is-open .blueprint-modal-panel {
+  transform: translateY(0) scale(1);
+}
+
+/* SQL Latency Progress Bar Animation */
+.benchmark-bar {
+  height: 8px;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.benchmark-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1.2s var(--ease-luxury);
+}
+
+/* Code Block Styling */
+.code-window {
+  background: #08090c;
+  border: 1px solid rgba(201, 169, 110, 0.16);
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: #d8d4cb;
+  overflow-x: auto;
+}
+
+/* Toast Notification */
+.luxury-toast {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9500;
+  background: rgba(17, 19, 25, 0.95);
+  border: 1px solid var(--gold-primary);
+  color: var(--text-ivory);
+  padding: 14px 22px;
+  border-radius: 3px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  transform: translateY(80px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s var(--ease-luxury);
+}
+
+.luxury-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Section Reveal Initial State (Fallback safe if JS disabled) */
+.reveal-up {
+  will-change: transform, opacity;
+}
+
+/* Navigation Blur Header */
+.nav-glass {
+  background: rgba(9, 9, 11, 0.8);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(201, 169, 110, 0.12);
+}
+
+.nav-link {
+  position: relative;
+  color: var(--text-pewter);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 1px;
+  background: var(--gold-primary);
+  transition: width 0.35s var(--ease-luxury);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--text-ivory);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .hero-3d-container {
+    height: 390px;
+  }
+}

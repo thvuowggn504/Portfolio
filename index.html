@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bùi Thanh Vương — Backend Developer | PHP/Laravel &amp; Java/Spring Boot</title>
+  <meta
+    name="description"
+    content="Portfolio cá nhân của Bùi Thanh Vương — Backend Developer chuyên nghiệp (PHP/Laravel & Java/Spring Boot). Kinh nghiệm xây dựng hệ thống PLM, SCM (WMS/TMS), thiết kế CSDL PostgreSQL/MySQL, tối ưu truy vấn SQL (-30% thời gian) và phát triển RESTful/GraphQL API."
+  />
+
+  <!-- Google Fonts: Cormorant Garamond (Quiet Luxury Editorial), Plus Jakarta Sans (Modern UI), JetBrains Mono (System Telemetry) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#09090B',
+            charcoal: '#0F1015',
+            champagne: '#C9A96E',
+            champagneLight: '#E6CFA3',
+            ivory: '#F4F1EA',
+            pewter: '#A6A196',
+            stoneMuted: '#6E6A61'
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Custom Quiet Luxury Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="bg-[#09090B] text-[#F4F1EA] antialiased selection:bg-[#C9A96E]/30 selection:text-[#F4F1EA]">
+  <!-- Ambient Film Grain, Architectural Grid, Gentle Water Caustics & Celestial White Fish Canvas -->
+  <div class="ambient-noise" aria-hidden="true"></div>
+  <div class="architectural-grid" aria-hidden="true"></div>
+  <div class="ambient-water-caustics" aria-hidden="true"></div>
+  <canvas id="celestial-fish-canvas" aria-hidden="true"></canvas>
+  <div id="ambient-spotlight" class="ambient-spotlight" aria-hidden="true"></div>
+
+  <!-- Custom Dual-Ring Luxury Cursor -->
+  <div id="cursor-dot" class="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- =====================================================================
+       TOP TELEMETRY BAR & STICKY NAVIGATION HEADER
+       ===================================================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 nav-glass">
+    <!-- Top System Telemetry Bar -->
+    <div class="border-b border-[rgba(201,169,110,0.08)] py-1.5 px-4 sm:px-8 hidden sm:block">
+      <div class="max-w-7xl mx-auto flex items-center justify-between text-[11px] font-mono-tech text-[#6E6A61]">
+        <div class="flex items-center gap-4">
+          <span class="flex items-center gap-2 text-[#64A687]">
+            <span class="status-pulse"></span>
+            <span>SYS.STATUS // AVAILABLE FOR BACKEND ROLES</span>
+          </span>
+          <span>•</span>
+          <span>STACK: PHP 8+ / LARAVEL &amp; JAVA / SPRING BOOT</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <span>LOC: TP. HỒ CHÍ MINH (10.7769° N, 106.7009° E)</span>
+          <span>•</span>
+          <span id="hcm-live-clock" class="text-[#C9A96E]">GMT+7</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-16 md:h-20 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-3.5 group">
+        <div class="w-10 h-10 border border-[rgba(201,169,110,0.4)] bg-[rgba(201,169,110,0.06)] flex items-center justify-center font-display text-lg font-semibold text-[#E6CFA3] group-hover:border-[#C9A96E] transition-colors">
+          BTV
+        </div>
+        <div>
+          <div class="font-display text-lg md:text-xl font-semibold tracking-wide text-[#F4F1EA]">
+            BÙI THANH VƯƠNG
+          </div>
+          <div class="font-mono-tech text-[10px] tracking-widest uppercase text-[#C9A96E]">
+            Backend System Architect
+          </div>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8" aria-label="Điều hướng chính">
+        <a href="#about" class="nav-link">01. Năng lực</a>
+        <a href="#skills" class="nav-link">02. Kỹ năng</a>
+        <a href="#experience" class="nav-link">03. Kinh nghiệm</a>
+        <a href="#projects" class="nav-link">04. Dự án</a>
+        <a href="#contact" class="nav-link">05. Liên hệ</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a
+          href="tel:0346638136"
+          class="hidden lg:inline-flex items-center gap-2 font-mono-tech text-xs text-[#A6A196] hover:text-[#E6CFA3] px-3 py-2 border border-[rgba(201,169,110,0.16)] hover:border-[#C9A96E] transition-colors"
+        >
+          <span class="text-[#C9A96E]">TEL //</span> 034 6638 136
+        </a>
+        <a href="#contact" class="btn-luxury-primary !py-2.5 !px-5 !text-xs">
+          <span>Kết nối ngay</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       MAIN CONTENT
+       ===================================================================== -->
+  <main id="top" class="relative z-10 pt-28 md:pt-36">
+    <!-- ===================================================================
+         HERO SECTION + INTERACTIVE 3D THREE.JS ARCHITECTURAL STAGE
+         =================================================================== -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-8 pb-20 md:pb-28">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <!-- Left Column: Editorial Quiet Luxury Introduction (7 Cols) -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="hero-stagger inline-flex items-center gap-3 px-3.5 py-1.5 bg-[rgba(201,169,110,0.08)] border border-[rgba(201,169,110,0.28)]">
+            <span class="w-2 h-2 rounded-full bg-[#C9A96E]"></span>
+            <span class="font-mono-tech text-xs uppercase tracking-widest text-[#E6CFA3]">
+              BACKEND DEVELOPER • PHP/LARAVEL &amp; JAVA/SPRING BOOT
+            </span>
+          </div>
+
+          <div class="hero-stagger">
+            <p class="font-display italic text-xl md:text-2xl text-[#C9A96E] mb-1">
+              Digital Architecture &amp; High-Throughput Backend Engineering
+            </p>
+            <h1 class="font-display text-5xl sm:text-6xl md:text-7xl font-medium tracking-tight leading-[1.06] text-[#F4F1EA]">
+              Bùi Thanh <span class="text-champagne-gradient italic font-semibold">Vương</span>
+            </h1>
+          </div>
+
+          <p class="hero-stagger text-base md:text-lg text-[#A6A196] leading-relaxed max-w-2xl">
+            Chuyên gia phát triển Backend với kinh nghiệm thực chiến xây dựng các hệ thống cốt lõi
+            <strong class="text-[#F4F1EA] font-medium">PLM (Product Lifecycle Management)</strong> và
+            <strong class="text-[#F4F1EA] font-medium">SCM (WMS / TMS)</strong>. Thế mạnh chuyên sâu về
+            thiết kế cơ sở dữ liệu chuẩn hóa, tối ưu truy vấn SQL
+            <span class="text-[#64A687] font-mono-tech text-sm px-1.5 py-0.5 bg-[rgba(100,166,135,0.12)] border border-[rgba(100,166,135,0.25)]">giảm 30% thời gian</span>,
+            phát triển <strong class="text-[#F4F1EA] font-medium">RESTful / GraphQL API</strong> và áp dụng chuẩn mực
+            <strong class="text-[#E6CFA3] font-medium">Service-Repository Pattern</strong>.
+          </p>
+
+          <!-- Direct Contact Telemetry Strip -->
+          <div class="hero-stagger grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+            <button
+              type="button"
+              data-copy-value="0346638136"
+              data-copy-label="Số điện thoại"
+              class="text-left p-3.5 bg-[rgba(255,255,255,0.02)] hover:bg-[rgba(201,169,110,0.08)] border border-[rgba(201,169,110,0.16)] hover:border-[#C9A96E] transition-all group"
+            >
+              <div class="font-mono-tech text-[10px] uppercase tracking-widest text-[#6E6A61] group-hover:text-[#C9A96E]">
+                ĐIỆN THOẠI (CLICK COPY)
+              </div>
+              <div class="font-mono-tech text-xs md:text-sm text-[#F4F1EA] mt-1">
+                034 6638 136
+              </div>
+            </button>
+
+            <button
+              type="button"
+              data-copy-value="bthvuong23@gmail.com"
+              data-copy-label="Địa chỉ Email"
+              class="text-left p-3.5 bg-[rgba(255,255,255,0.02)] hover:bg-[rgba(201,169,110,0.08)] border border-[rgba(201,169,110,0.16)] hover:border-[#C9A96E] transition-all group"
+            >
+              <div class="font-mono-tech text-[10px] uppercase tracking-widest text-[#6E6A61] group-hover:text-[#C9A96E]">
+                EMAIL (CLICK COPY)
+              </div>
+              <div class="font-mono-tech text-xs md:text-sm text-[#F4F1EA] mt-1 truncate">
+                bthvuong23@gmail.com
+              </div>
+            </button>
+
+            <div class="p-3.5 bg-[rgba(255,255,255,0.02)] border border-[rgba(201,169,110,0.16)]">
+              <div class="font-mono-tech text-[10px] uppercase tracking-widest text-[#6E6A61]">
+                ĐỊA ĐIỂM LÀM VIỆC
+              </div>
+              <div class="font-mono-tech text-xs md:text-sm text-[#F4F1EA] mt-1">
+                TP. Hồ Chí Minh
+              </div>
+            </div>
+          </div>
+
+          <!-- Primary CTA Buttons -->
+          <div class="hero-stagger flex flex-wrap items-center gap-4 pt-3">
+            <a href="#projects" class="btn-luxury-primary">
+              <span>Khám phá Hệ thống &amp; Dự án</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+            <a href="#experience" class="btn-luxury-outline">
+              <span>Hành trình tại TCOM</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive 3D Three.js Data Topology Core (5 Cols) -->
+        <div class="lg:col-span-5 hero-stagger">
+          <div id="hero-3d-stage" class="hero-3d-container corner-ornament">
+            <!-- Top HUD Overlay -->
+            <div class="absolute top-4 left-4 right-4 z-10 flex items-center justify-between pointer-events-none">
+              <div>
+                <div class="font-mono-tech text-[10px] text-[#C9A96E] tracking-widest uppercase">
+                  3D INTERACTIVE CORE // 60FPS WEBGL
+                </div>
+                <div id="hud-topology-title" class="font-mono-tech text-xs text-[#F4F1EA] mt-0.5">
+                  POSTGRESQL / MYSQL RELATIONAL TOPOLOGY
+                </div>
+              </div>
+              <span class="font-mono-tech text-[10px] px-2 py-0.5 bg-[rgba(100,166,135,0.15)] text-[#64A687] border border-[rgba(100,166,135,0.3)]">
+                INTERACTIVE
+              </span>
+            </div>
+
+            <!-- Three.js WebGL Canvas -->
+            <canvas id="hero-webgl-canvas" aria-label="Mô hình 3D Kiến trúc Dữ liệu tương tác"></canvas>
+
+            <!-- Bottom HUD Topology Switcher -->
+            <div class="absolute bottom-4 left-4 right-4 z-10 flex flex-col gap-2">
+              <div id="hud-topology-telemetry" class="font-mono-tech text-[10px] text-[#A6A196] tracking-wider">
+                INDEXING: COMPOSITE B-TREE // LATENCY: -30%
+              </div>
+              <div class="flex flex-wrap gap-1.5">
+                <button type="button" class="hud-mode-btn active" data-topology-mode="schema">
+                  01 / Schema
+                </button>
+                <button type="button" class="hud-mode-btn" data-topology-mode="service">
+                  02 / Service-Repo
+                </button>
+                <button type="button" class="hud-mode-btn" data-topology-mode="concurrency">
+                  03 / @Transactional
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Architectural Metrics Strip -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-14 pt-12 border-t border-[rgba(201,169,110,0.14)]">
+        <div class="p-6 bg-[rgba(255,255,255,0.015)] border border-[rgba(201,169,110,0.12)] reveal-up">
+          <div
+            class="font-display text-4xl md:text-5xl font-semibold text-champagne-gradient mb-1"
+            data-counter-target="30"
+            data-counter-prefix="-"
+            data-counter-suffix="%"
+          >
+            -30%
+          </div>
+          <div class="font-mono-tech text-xs uppercase tracking-wider text-[#F4F1EA] mb-1">
+            Thời gian truy vấn SQL
+          </div>
+          <p class="text-xs text-[#6E6A61]">
+            Tối ưu hóa PostgreSQL Schema &amp; Indexing trên hệ thống PLM tại TCOM
+          </p>
+        </div>
+
+        <div class="p-6 bg-[rgba(255,255,255,0.015)] border border-[rgba(201,169,110,0.12)] reveal-up">
+          <div class="font-display text-4xl md:text-5xl font-semibold text-[#F4F1EA] mb-1">
+            PHP <span class="text-[#C9A96E]">&amp;</span> Java
+          </div>
+          <div class="font-mono-tech text-xs uppercase tracking-wider text-[#F4F1EA] mb-1">
+            Dual-Stack Backend Core
+          </div>
+          <p class="text-xs text-[#6E6A61]">
+            Làm chủ sâu sắc cả hai hệ sinh thái Laravel 10/11+ và Spring Boot Enterprise
+          </p>
+        </div>
+
+        <div class="p-6 bg-[rgba(255,255,255,0.015)] border border-[rgba(201,169,110,0.12)] reveal-up">
+          <div
+            class="font-display text-4xl md:text-5xl font-semibold text-champagne-gradient mb-1"
+            data-counter-target="100"
+            data-counter-prefix=""
+            data-counter-suffix="%"
+          >
+            100%
+          </div>
+          <div class="font-mono-tech text-xs uppercase tracking-wider text-[#F4F1EA] mb-1">
+            Service-Repository Pattern
+          </div>
+          <p class="text-xs text-[#6E6A61]">
+            Kiến trúc phân tầng sạch, dễ kiểm thử, tách biệt hoàn toàn nghiệp vụ &amp; ORM
+          </p>
+        </div>
+
+        <div class="p-6 bg-[rgba(255,255,255,0.015)] border border-[rgba(201,169,110,0.12)] reveal-up">
+          <div class="font-display text-4xl md:text-5xl font-semibold text-[#64A687] mb-1">
+            REST <span class="text-[#C9A96E]">&amp;</span> GQL
+          </div>
+          <div class="font-mono-tech text-xs uppercase tracking-wider text-[#F4F1EA] mb-1">
+            Chuẩn Giao thức API Hiện đại
+          </div>
+          <p class="text-xs text-[#6E6A61]">
+            Xây dựng RESTful API &amp; GraphQL bảo mật cao với FormRequest &amp; Middleware
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="luxury-divider"></div>
+
+    <!-- ===================================================================
+         SECTION 01: ARCHITECTURAL PHILOSOPHY & INTERACTIVE SQL BENCHMARK
+         =================================================================== -->
+    <section id="about" class="max-w-7xl mx-auto px-4 sm:px-8 py-24 md:py-32">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Left Narrative (6 cols) -->
+        <div class="lg:col-span-6 space-y-6 reveal-up">
+          <div class="font-mono-tech text-xs uppercase tracking-[0.2em] text-[#C9A96E]">
+            01 // TƯ DUY KIẾN TRÚC &amp; TÓM TẮT NĂNG LỰC
+          </div>
+          <h2 class="font-display text-4xl md:text-5xl font-medium text-[#F4F1EA] leading-tight">
+            Sự sang trọng của Backend nằm ở <span class="text-champagne-gradient italic">độ chính xác</span> và tốc độ phản hồi.
+          </h2>
+          <p class="text-[#A6A196] leading-relaxed">
+            Trong các hệ thống doanh nghiệp quy mô lớn như <strong class="text-[#F4F1EA]">PLM (Quản lý vòng đời sản phẩm)</strong> hay
+            <strong class="text-[#F4F1EA]">SCM (Quản lý kho bãi WMS &amp; vận tải TMS)</strong>, mỗi truy vấn cơ sở dữ liệu và mỗi giao dịch
+            đều quyết định tính ổn định của toàn bộ dây chuyền vận hành.
+          </p>
+
+          <div class="space-y-4 pt-2">
+            <div class="p-4 bg-[rgba(255,255,255,0.02)] border-l-2 border-[#C9A96E]">
+              <div class="font-mono-tech text-xs text-[#E6CFA3] uppercase mb-1">
+                Thiết kế Schema &amp; Tối ưu SQL (-30% Latency)
+              </div>
+              <p class="text-sm text-[#A6A196]">
+                Mô hình hóa thực thể phức tạp (<code class="text-[#F4F1EA]">Parts, Revisions, Versions, Groups</code>), phân tích kế hoạch thực thi và đánh chỉ mục chiến lược trên PostgreSQL &amp; MySQL.
+              </p>
+            </div>
+
+            <div class="p-4 bg-[rgba(255,255,255,0.02)] border-l-2 border-[#64A687]">
+              <div class="font-mono-tech text-xs text-[#64A687] uppercase mb-1">
+                Kiến trúc Service-Repository &amp; Bảo mật đa lớp
+              </div>
+              <p class="text-sm text-[#A6A196]">
+                Đóng gói toàn bộ Business Logic trong tầng Service, giao tiếp dữ liệu qua Repository Interface và bảo vệ biên API bằng <code class="text-[#F4F1EA]">FormRequest</code> cùng <code class="text-[#F4F1EA]">Custom Middleware</code>.
+              </p>
+            </div>
+
+            <div class="p-4 bg-[rgba(255,255,255,0.02)] border-l-2 border-[#7CA3C7]">
+              <div class="font-mono-tech text-xs text-[#7CA3C7] uppercase mb-1">
+                Kiểm soát Giao dịch Đồng thời (@Transactional &amp; @Scheduled)
+              </div>
+              <p class="text-sm text-[#A6A196]">
+                Đảm bảo tính nhất quán dữ liệu tuyệt đối khi quản lý tồn kho khả dụng (<code class="text-[#F4F1EA]">Available Quantity</code>) và tồn kho đặt giữ (<code class="text-[#F4F1EA]">Reserved Quantity</code>) trong hệ thống WMS.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Interactive Console: Live SQL Optimization Benchmark (6 cols) -->
+        <div class="lg:col-span-6 reveal-up">
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card corner-ornament p-6 md:p-8" data-tilt-max="4">
+              <div class="tilt-glare"></div>
+
+              <div class="depth-layer-1">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-[rgba(201,169,110,0.16)] pb-4 mb-6">
+                  <div>
+                    <div class="font-mono-tech text-[10px] uppercase tracking-widest text-[#C9A96E]">
+                      INTERACTIVE TELEMETRY BENCHMARK
+                    </div>
+                    <h3 class="font-display text-2xl text-[#F4F1EA]">
+                      Mô phỏng Tối ưu Truy vấn SQL (PLM PostgreSQL)
+                    </h3>
+                  </div>
+                  <span id="sim-status-badge" class="font-mono-tech text-xs px-2.5 py-1 bg-[rgba(100,166,135,0.15)] text-[#64A687]">
+                    COMPOSITE INDEX // SERVICE-REPOSITORY BATCHED
+                  </span>
+                </div>
+
+                <!-- Interactive Toggle Buttons -->
+                <div class="grid grid-cols-2 gap-3 mb-6">
+                  <button
+                    type="button"
+                    id="sim-btn-legacy"
+                    class="hud-mode-btn py-2.5 text-center"
+                  >
+                    Trước tối ưu (Baseline)
+                  </button>
+                  <button
+                    type="button"
+                    id="sim-btn-optimized"
+                    class="hud-mode-btn active py-2.5 text-center"
+                  >
+                    Sau tối ưu (-30% Thời gian)
+                  </button>
+                </div>
+
+                <!-- Latency Meter -->
+                <div class="p-4 bg-[#09090B] border border-[rgba(201,169,110,0.15)] mb-5">
+                  <div class="flex items-center justify-between text-xs font-mono-tech mb-2">
+                    <span class="text-[#A6A196]">THỜI GIAN PHẢN HỒI TRUY VẤN (EXECUTION TIME):</span>
+                    <span id="sim-latency-value" class="text-[#64A687] font-semibold">
+                      294 ms (-30% Faster)
+                    </span>
+                  </div>
+                  <div class="benchmark-bar">
+                    <div
+                      id="sim-latency-bar"
+                      class="benchmark-fill bg-gradient-to-r from-[#C9A96E] to-[#64A687]"
+                      style="width: 70%"
+                    ></div>
+                  </div>
+                </div>
+
+                <!-- Execution Plan Output -->
+                <pre id="sim-query-plan" class="code-window p-4 text-xs leading-relaxed"><span class="text-[#64A687]">[EXPLAIN ANALYZE — AFTER BÙI THANH VƯƠNG OPTIMIZATION]</span>
+-> Index Scan using idx_parts_group_rev on parts p (cost=0.42..312.10)
+   -> Index Cond: ((group_id = $1) AND (status = 'published'))
+   -> DataLoader Batching via PartVersionRepository (Single Roundtrip)
+<span class="text-[#E6CFA3]">Execution Time: 294.05 ms (-30.0% Latency Reduction) | Index Hit: 99.4%</span></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="luxury-divider"></div>
+
+    <!-- ===================================================================
+         SECTION 02: TECHNICAL ARSENAL (SKILLS MATRIX — 3D TILT CARDS)
+         =================================================================== -->
+    <section id="skills" class="max-w-7xl mx-auto px-4 sm:px-8 py-24 md:py-32">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 reveal-up">
+        <div>
+          <div class="font-mono-tech text-xs uppercase tracking-[0.2em] text-[#C9A96E] mb-2">
+            02 // HỆ THỐNG KỸ NĂNG CHUYÊN MÔN (TECHNICAL MATRIX)
+          </div>
+          <h2 class="font-display text-4xl md:text-5xl font-medium text-[#F4F1EA]">
+            Năng lực Công nghệ &amp; <span class="text-champagne-gradient italic">Kiến trúc Phần mềm</span>
+          </h2>
+        </div>
+        <p class="font-mono-tech text-xs text-[#6E6A61] mt-4 md:mt-0">
+          DI CHUỘT TRÊN CÁC KHỐI ĐỂ TRẢI NGHIỆM HIỆU ỨNG 3D TILT 60FPS
+        </p>
+      </div>
+
+      <!-- Dynamically Hydrated by js/app.js -->
+      <div id="skills-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-7"></div>
+    </section>
+
+    <div class="luxury-divider"></div>
+
+    <!-- ===================================================================
+         SECTION 03: WORK EXPERIENCE (TCOM CAREER PROGRESSION)
+         =================================================================== -->
+    <section id="experience" class="max-w-7xl mx-auto px-4 sm:px-8 py-24 md:py-32">
+      <div class="mb-14 reveal-up">
+        <div class="font-mono-tech text-xs uppercase tracking-[0.2em] text-[#C9A96E] mb-2">
+          03 // HÀNH TRÌNH SỰ NGHIỆP (CAREER CHRONICLE)
+        </div>
+        <h2 class="font-display text-4xl md:text-5xl font-medium text-[#F4F1EA]">
+          Kinh nghiệm Thực chiến tại <span class="text-champagne-gradient italic">TCOM</span>
+        </h2>
+      </div>
+
+      <div class="tilt-card-wrapper reveal-up">
+        <div class="tilt-card corner-ornament p-7 md:p-12" data-tilt-max="3.5">
+          <div class="tilt-glare"></div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start depth-layer-1">
+            <!-- Left Column: Company, Time & Promotion Ladder (4 cols) -->
+            <div class="lg:col-span-4 border-b lg:border-b-0 lg:border-r border-[rgba(201,169,110,0.16)] pb-6 lg:pb-0 lg:pr-8">
+              <div class="inline-flex items-center gap-2 font-mono-tech text-xs px-3 py-1 bg-[rgba(201,169,110,0.12)] text-[#E6CFA3] border border-[rgba(201,169,110,0.3)] mb-4">
+                02/2025 — 08/2025
+              </div>
+              <h3 class="font-display text-4xl font-semibold text-[#F4F1EA] mb-1">
+                TCOM
+              </h3>
+              <p class="font-mono-tech text-xs text-[#A6A196] mb-6">
+                TP. Hồ Chí Minh • Enterprise Software Solutions
+              </p>
+
+              <!-- Career Progression Ladder -->
+              <div class="space-y-4 relative before:content-[''] before:absolute before:left-2.5 before:top-3 before:bottom-3 before:w-[1px] before:bg-[rgba(201,169,110,0.35)]">
+                <div class="relative pl-8">
+                  <span class="absolute left-1 top-1.5 w-3 h-3 rounded-full bg-[#C9A96E] shadow-[0_0_12px_#C9A96E]"></span>
+                  <div class="font-mono-tech text-[10px] uppercase tracking-widest text-[#64A687]">
+                    THĂNG TIẾN CHÍNH THỨC
+                  </div>
+                  <div class="font-display text-2xl font-medium text-[#F4F1EA]">
+                    Backend Developer
+                  </div>
+                  <div class="text-xs text-[#A6A196]">
+                    Chủ trì phát triển phân hệ PLM &amp; SCM (WMS/TMS)
+                  </div>
+                </div>
+
+                <div class="relative pl-8 pt-2">
+                  <span class="absolute left-1.5 top-3.5 w-2 h-2 rounded-full bg-[#6E6A61]"></span>
+                  <div class="font-mono-tech text-[10px] uppercase tracking-widest text-[#6E6A61]">
+                    GIAI ĐOẠN KHỞI ĐẦU
+                  </div>
+                  <div class="font-display text-xl text-[#A6A196]">
+                    Backend Developer Intern
+                  </div>
+                  <div class="text-xs text-[#6E6A61]">
+                    Nắm bắt nhanh kiến trúc &amp; vượt qua đánh giá kỹ thuật
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Dual Enterprise Project Ownership at TCOM (8 cols) -->
+            <div class="lg:col-span-8 space-y-6">
+              <p class="text-[#D8D4CB] leading-relaxed">
+                Tại <strong class="text-[#F4F1EA]">TCOM</strong>, tôi khởi đầu ở vị trí
+                <span class="text-[#E6CFA3]">Backend Developer Intern</span> và nhanh chóng được tín nhiệm thăng tiến lên
+                <span class="text-[#E6CFA3] font-medium">Backend Developer</span> chính thức. Tôi trực tiếp tham gia thiết kế cơ sở dữ liệu, tối ưu hiệu năng và xây dựng nghiệp vụ lõi cho 2 dự án doanh nghiệp trọng điểm trên cả hai nền tảng
+                <strong class="text-[#F4F1EA]">PHP/Laravel</strong> và <strong class="text-[#F4F1EA]">Java/Spring Boot</strong>:
+              </p>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <!-- TCOM Project 1 Summary -->
+                <div class="p-5 bg-[rgba(9,9,11,0.7)] border border-[rgba(201,169,110,0.18)]">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="font-mono-tech text-[11px] text-[#C9A96E]">DỰ ÁN 01 // PLM SYSTEM</span>
+                    <span class="font-mono-tech text-[10px] px-2 py-0.5 bg-[rgba(212,132,106,0.15)] text-[#D4846A]">
+                      PHP / Laravel
+                    </span>
+                  </div>
+                  <h4 class="font-display text-xl text-[#F4F1EA] mb-2">
+                    Product Lifecycle Management
+                  </h4>
+                  <ul class="space-y-1.5 text-xs text-[#A6A196]">
+                    <li>• Thiết kế schema PostgreSQL (<code class="text-[#F4F1EA]">Parts, Revisions, Versions, Groups</code>).</li>
+                    <li>• Tối ưu truy vấn SQL giúp <strong class="text-[#64A687]">giảm 30% thời gian</strong> thực thi.</li>
+                    <li>• Triển khai luồng quản lý phiên bản: <code class="text-[#E6CFA3]">Draft → Published → Archived</code>.</li>
+                    <li>• Phát triển GraphQL API với Service-Repository Pattern, bảo mật bằng FormRequest &amp; Custom Middleware trên Docker.</li>
+                  </ul>
+                </div>
+
+                <!-- TCOM Project 2 Summary -->
+                <div class="p-5 bg-[rgba(9,9,11,0.7)] border border-[rgba(201,169,110,0.18)]">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="font-mono-tech text-[11px] text-[#C9A96E]">DỰ ÁN 02 // SCM SYSTEM</span>
+                    <span class="font-mono-tech text-[10px] px-2 py-0.5 bg-[rgba(124,163,199,0.15)] text-[#7CA3C7]">
+                      Java / Spring Boot
+                    </span>
+                  </div>
+                  <h4 class="font-display text-xl text-[#F4F1EA] mb-2">
+                    Supply Chain Management (WMS &amp; TMS)
+                  </h4>
+                  <ul class="space-y-1.5 text-xs text-[#A6A196]">
+                    <li>• Phát triển <strong class="text-[#F4F1EA]">WMS (Warehouse Management System)</strong> quản lý kho bãi &amp; tồn kho (<code class="text-[#E6CFA3]">Available / Reserved Quantity</code>).</li>
+                    <li>• Đảm bảo toàn vẹn giao dịch với <code class="text-[#64A687]">@Transactional</code> và tác vụ định kỳ <code class="text-[#64A687]">@Scheduled</code>.</li>
+                    <li>• Phát triển <strong class="text-[#F4F1EA]">TMS (Transport Management System)</strong> quản lý đội phương tiện và điều phối tài xế.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="luxury-divider"></div>
+
+    <!-- ===================================================================
+         SECTION 04: FEATURED PROJECTS & SYSTEM ARCHITECTURE BLUEPRINTS
+         =================================================================== -->
+    <section id="projects" class="max-w-7xl mx-auto px-4 sm:px-8 py-24 md:py-32">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 reveal-up">
+        <div>
+          <div class="font-mono-tech text-xs uppercase tracking-[0.2em] text-[#C9A96E] mb-2">
+            04 // DANH MỤC HỆ THỐNG &amp; DỰ ÁN TIÊU BIỂU
+          </div>
+          <h2 class="font-display text-4xl md:text-5xl font-medium text-[#F4F1EA]">
+            Kiến trúc Dự án &amp; <span class="text-champagne-gradient italic">Bản vẽ Kỹ thuật</span>
+          </h2>
+        </div>
+
+        <!-- Category Filter Tabs -->
+        <div class="flex flex-wrap gap-2">
+          <button type="button" class="hud-mode-btn active" data-project-filter="all">
+            Tất cả (03)
+          </button>
+          <button type="button" class="hud-mode-btn" data-project-filter="plm">
+            PLM // PHP &amp; Laravel
+          </button>
+          <button type="button" class="hud-mode-btn" data-project-filter="scm">
+            SCM // Java &amp; Spring Boot
+          </button>
+          <button type="button" class="hud-mode-btn" data-project-filter="fullstack">
+            Survey // GraphQL &amp; React
+          </button>
+        </div>
+      </div>
+
+      <!-- Dynamically Hydrated by js/app.js -->
+      <div id="projects-grid-container" class="space-y-8"></div>
+    </section>
+
+    <div class="luxury-divider"></div>
+
+    <!-- ===================================================================
+         SECTION 05: EXECUTIVE CONTACT & DIRECT DISPATCH CONSOLE
+         =================================================================== -->
+    <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-8 py-24 md:py-32">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <!-- Left Column: Direct Contact Details (6 cols) -->
+        <div class="lg:col-span-6 space-y-6 reveal-up">
+          <div class="font-mono-tech text-xs uppercase tracking-[0.2em] text-[#C9A96E]">
+            05 // KẾT NỐI &amp; HỢP TÁC (INITIATE CONNECTION)
+          </div>
+          <h2 class="font-display text-4xl md:text-6xl font-medium text-[#F4F1EA] leading-tight">
+            Sẵn sàng kiến tạo <span class="text-champagne-gradient italic">hệ thống Backend</span> tiếp theo cùng bạn.
+          </h2>
+          <p class="text-[#A6A196] leading-relaxed">
+            Tôi luôn cởi mở với các cơ hội hợp tác phát triển hệ thống Backend chuyên sâu
+            (<strong class="text-[#F4F1EA]">PHP/Laravel</strong> hoặc <strong class="text-[#F4F1EA]">Java/Spring Boot</strong>)
+            tại TP. Hồ Chí Minh hoặc làm việc từ xa. Hãy liên hệ trực tiếp qua số điện thoại hoặc email dưới đây:
+          </p>
+
+          <div class="space-y-4 pt-2">
+            <!-- Phone Card -->
+            <div class="p-5 bg-[rgba(255,255,255,0.02)] border border-[rgba(201,169,110,0.18)] flex items-center justify-between">
+              <div>
+                <div class="font-mono-tech text-[11px] uppercase tracking-widest text-[#C9A96E]">
+                  SỐ ĐIỆN THOẠI TRỰC TIẾP
+                </div>
+                <a href="tel:0346638136" class="font-display text-2xl md:text-3xl text-[#F4F1EA] hover:text-[#E6CFA3] transition-colors">
+                  034 6638 136
+                </a>
+              </div>
+              <button
+                type="button"
+                data-copy-value="0346638136"
+                data-copy-label="Số điện thoại"
+                class="hud-mode-btn"
+              >
+                Sao chép SĐT
+              </button>
+            </div>
+
+            <!-- Email Card -->
+            <div class="p-5 bg-[rgba(255,255,255,0.02)] border border-[rgba(201,169,110,0.18)] flex items-center justify-between gap-4">
+              <div class="min-w-0">
+                <div class="font-mono-tech text-[11px] uppercase tracking-widest text-[#C9A96E]">
+                  ĐỊA CHỈ EMAIL CHÍNH THỨC
+                </div>
+                <a
+                  href="mailto:bthvuong23@gmail.com"
+                  class="font-display text-2xl md:text-3xl text-[#F4F1EA] hover:text-[#E6CFA3] transition-colors block truncate"
+                >
+                  bthvuong23@gmail.com
+                </a>
+              </div>
+              <button
+                type="button"
+                data-copy-value="bthvuong23@gmail.com"
+                data-copy-label="Email"
+                class="hud-mode-btn shrink-0"
+              >
+                Sao chép Email
+              </button>
+            </div>
+
+            <!-- Location Card -->
+            <div class="p-5 bg-[rgba(255,255,255,0.02)] border border-[rgba(201,169,110,0.18)] flex items-center justify-between">
+              <div>
+                <div class="font-mono-tech text-[11px] uppercase tracking-widest text-[#C9A96E]">
+                  ĐỊA ĐIỂM HIỆN TẠI
+                </div>
+                <div class="font-display text-2xl md:text-3xl text-[#F4F1EA]">
+                  TP. Hồ Chí Minh, Việt Nam
+                </div>
+              </div>
+              <span class="font-mono-tech text-xs text-[#64A687] px-2.5 py-1 bg-[rgba(100,166,135,0.12)] border border-[rgba(100,166,135,0.28)]">
+                ON-SITE / HYBRID / REMOTE
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Quick Message Composer (6 cols) -->
+        <div class="lg:col-span-6 reveal-up">
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card corner-ornament p-7 md:p-10" data-tilt-max="3.5">
+              <div class="tilt-glare"></div>
+
+              <div class="depth-layer-1">
+                <div class="border-b border-[rgba(201,169,110,0.15)] pb-4 mb-6">
+                  <div class="font-mono-tech text-xs uppercase tracking-widest text-[#C9A96E]">
+                    DIRECT TRANSMISSION CONSOLE
+                  </div>
+                  <h3 class="font-display text-2xl md:text-3xl text-[#F4F1EA] mt-1">
+                    Gửi lời nhắn trực tiếp tới Bùi Thanh Vương
+                  </h3>
+                </div>
+
+                <form id="luxury-contact-form" class="space-y-5">
+                  <div>
+                    <label for="sender-name" class="block font-mono-tech text-xs uppercase tracking-wider text-[#A6A196] mb-2">
+                      Họ và tên của bạn *
+                    </label>
+                    <input
+                      type="text"
+                      id="sender-name"
+                      required
+                      placeholder="VD: Nguyễn Văn A (Tech Lead / HR Manager)"
+                      class="w-full px-4 py-3 bg-[#09090B] border border-[rgba(201,169,110,0.22)] focus:border-[#C9A96E] text-sm text-[#F4F1EA] outline-none transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label for="sender-company" class="block font-mono-tech text-xs uppercase tracking-wider text-[#A6A196] mb-2">
+                      Công ty / Tổ chức
+                    </label>
+                    <input
+                      type="text"
+                      id="sender-company"
+                      placeholder="Tên doanh nghiệp hoặc dự án..."
+                      class="w-full px-4 py-3 bg-[#09090B] border border-[rgba(201,169,110,0.22)] focus:border-[#C9A96E] text-sm text-[#F4F1EA] outline-none transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label for="sender-message" class="block font-mono-tech text-xs uppercase tracking-wider text-[#A6A196] mb-2">
+                      Nội dung trao đổi *
+                    </label>
+                    <textarea
+                      id="sender-message"
+                      rows="4"
+                      required
+                      placeholder="Trao đổi về vị trí Backend Developer (PHP/Laravel hoặc Java/Spring Boot)..."
+                      class="w-full px-4 py-3 bg-[#09090B] border border-[rgba(201,169,110,0.22)] focus:border-[#C9A96E] text-sm text-[#F4F1EA] outline-none transition-colors resize-none"
+                    ></textarea>
+                  </div>
+
+                  <button type="submit" class="btn-luxury-primary w-full justify-center">
+                    <span>Khởi tạo Email Kết nối</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =====================================================================
+       FOOTER
+       ===================================================================== -->
+  <footer class="border-t border-[rgba(201,169,110,0.16)] bg-[#070709] py-10 px-4 sm:px-8 relative z-10">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono-tech text-[#6E6A61]">
+      <div>
+        © 2025 — 2026 <span class="text-[#F4F1EA]">BÙI THANH VƯƠNG</span>. ALL RIGHTS RESERVED.
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="tel:0346638136" class="hover:text-[#C9A96E] transition-colors">034 6638 136</a>
+        <span>•</span>
+        <a href="mailto:bthvuong23@gmail.com" class="hover:text-[#C9A96E] transition-colors">bthvuong23@gmail.com</a>
+        <span>•</span>
+        <span class="text-[#C9A96E]">QUIET LUXURY EDITION</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       INTERACTIVE ARCHITECTURE BLUEPRINT MODAL
+       ===================================================================== -->
+  <div id="blueprint-modal" class="blueprint-modal-backdrop" role="dialog" aria-modal="true" aria-label="Bản vẽ kiến trúc hệ thống">
+    <div id="blueprint-modal-body" class="blueprint-modal-panel"></div>
+  </div>
+
+  <!-- =====================================================================
+       LUXURY CLIPBOARD / ACTION TOAST
+       ===================================================================== -->
+  <div id="luxury-toast" class="luxury-toast" role="status" aria-live="polite">
+    <span class="w-2 h-2 rounded-full bg-[#64A687]"></span>
+    <span id="luxury-toast-text" class="font-mono-tech text-xs text-[#F4F1EA]"></span>
+  </div>
+
+  <!-- =====================================================================
+       EXTERNAL 3D & ANIMATION LIBRARIES (Three.js + GSAP + ScrollTrigger)
+       ===================================================================== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Portfolio Application Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/three-scene.js"></script>
+  <script src="js/celestial-fish.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
